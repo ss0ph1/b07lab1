@@ -1,16 +1,19 @@
 public class Driver {
-	public static void main(String [] args) {
-		Polynomial p = new Polynomial();
-		System.out.println(p.evaluate(3));
-		double [] c1 = {6,0,0,5};
-		Polynomial p1 = new Polynomial(c1);
-		double [] c2 = {0,-2,0,0,-9};
-		Polynomial p2 = new Polynomial(c2);
-		Polynomial s = p1.add(p2);
-		System.out.println("s(0.1) = " + s.evaluate(0.1));
-		if(s.hasRoot(1))
-			System.out.println("1 is a root of s");
-		else
-			System.out.println("1 is not a root of s");
-	}
+
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        // Test polynomial addition
+        Polynomial p1 = new Polynomial(new double[]{5, -3, 7}, new int[]{0, 1, 8}); 
+        Polynomial p2 = new Polynomial(new double[]{1, 2, 3}, new int[]{0, 1, 2}); 
+        Polynomial resultAdd = p1.add(p2);  
+        System.out.println("Add: " + Arrays.toString(resultAdd.coef) + ", " + Arrays.toString(resultAdd.expo));
+
+        // Test multiplication
+        Polynomial resultMultiply = p1.multiply(p2);  
+        System.out.println("Multi: " + Arrays.toString(resultMultiply.coef) + ", " + Arrays.toString(resultMultiply.expo));
+
+        // Test saving and reading from file
+        p1.saveToFile("poly_output.txt");
+        Polynomial p3 = new Polynomial(new File("poly_output.txt"));
+        System.out.println("Read from file: " + Arrays.toString(p3.coef) + ", " + Arrays.toString(p3.expo));
+    }
 }
