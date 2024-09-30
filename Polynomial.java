@@ -1,3 +1,4 @@
+package lab2Polynomial;
 
 import java.util.*;
 import java.io.File;
@@ -44,8 +45,6 @@ public class Polynomial{
 			line = input.nextLine();
         }
         input.close();
-		System.out.println("the line is:" + line);
-
         
         line = line.replace("-", "+-");
         if(!line.startsWith("-")) {
@@ -123,17 +122,17 @@ public class Polynomial{
 	Polynomial add(Polynomial input) {
 		Double value = 0.0;
 		for(Map.Entry<Integer, Double> terms : input.dict.entrySet()) {
-			System.out.println("term is:" + terms.getKey());
+			//System.out.println("term is:" + terms.getKey());
 			if(this.dict.containsKey(terms.getKey())) {
 				value = this.dict.get(terms.getKey()) + terms.getValue();
-				System.out.println("value is:"+ value);
+				//System.out.println("value is:"+ value);
 				if(value == 0) {
 					this.dict.remove(terms.getKey());
 					input.dict.remove(terms.getKey());
 					continue;
 				}
 				input.dict.replace(terms.getKey(), value);
-				System.out.println(input.dict.get(terms.getKey()));
+				//System.out.println(input.dict.get(terms.getKey()));
 
 			} else {
 				input.dict.put(terms.getKey(),input.dict.get(terms.getKey()));
